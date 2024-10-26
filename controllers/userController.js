@@ -37,7 +37,7 @@ exports.regstration = async (req,res) => {
         });
         const token =  user.generateToken();
 
-        res.status(201).cookie(`token_${user._id}_${Date.now()}`, token, {
+        res.status(201).cookie(`token`, token, {
             maxAge: 24 * 60 * 60 * 1000, // Expires after 1 day
             httpOnly: true, // Accessible only by web server (not JavaScript)
             secure: false, // Set to `true` if using HTTPS
@@ -98,7 +98,7 @@ exports.login = async (req, res) => {
         const token = user.generateToken();
 
         // Send the token in a cookie and respond with a success message
-        res.status(201).cookie(`token_${user._id}_${Date.now()}`, token, {
+        res.status(201).cookie(`token`, token, {
             maxAge: 24 * 60 * 60 * 1000, // 1 day expiration
             httpOnly: true, // Not accessible via JavaScript
             secure: false, // Should be true if using HTTPS
